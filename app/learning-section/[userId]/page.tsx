@@ -30,6 +30,25 @@ const LearningSection = (props: Props) => {
     }
   }, [router.isReady]);
 
+  // dummy knowledge data for the knowledge section.
+  const knowledgeData = {
+    0: {
+      title: "Title 0",
+      content: "Content 0",
+    },
+    1: {
+      title: "Title 1",
+      content: "Content 1",
+    },
+    2: {
+      title: "Title 2",
+      content: "Content 2",
+    },
+  };
+
+  // dummy topic for the knowledge section.
+  const topic = "User picked topic";
+
   return (
     /* Learning Section should take up full width and height available to it. */
     <div className="flex flex-col w-full min-h-screen bg-blue-300 text-center items-align">
@@ -38,7 +57,8 @@ const LearningSection = (props: Props) => {
       {/* Kwowledge section will take up the left 50% of the rest of the column */}
       <div className="flex flex-1 w-full">
         <div className="flex-1 flex-grow bg-blue-200 border-y-4 border-l-4 border-r-2">
-          <KnowledgeSection />
+          {/* KnowledgeSection takes knowledgeData and topic as props */}
+          <KnowledgeSection knowledgeData={knowledgeData} topic={topic}/>
         </div>
         {/* Quiz and Inquiry sections will take up the right 50% of the rest of the column and they will be stacked on top of each other */}
         <div className="flex-1 flex flex-col flex-grow bg-orange-300 border-y-4 border-l-2 border-r-4">
