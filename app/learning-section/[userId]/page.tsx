@@ -34,15 +34,35 @@ const LearningSection = (props: Props) => {
   const knowledgeData = {
     0: {
       title: "Title 0",
-      content: "Content 0",
+      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta aut saepe, quas provident perspiciatis earum voluptatibus fugiat autem quod fugit, neque in rerum impedit corrupti tenetur. Distinctio aspernatur eveniet recusandae? \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat nemo eveniet odit sed alias minima eaque laborum, perferendis ipsam aut aperiam laboriosam. Recusandae maiores veritatis placeat eveniet accusamus at! \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta aut saepe, quas provident perspiciatis earum voluptatibus fugiat autem quod fugit, neque in rerum impedit corrupti tenetur. Distinctio aspernatur eveniet recusandae? \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat nemo eveniet odit sed alias minima eaque laborum, perferendis ipsam aut aperiam laboriosam. Recusandae maiores veritatis placeat eveniet accusamus at!`
     },
     1: {
       title: "Title 1",
-      content: "Content 1",
+      isQuizable: true,
+      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta aut saepe, quas provident perspiciatis earum voluptatibus fugiat autem quod fugit, neque in rerum impedit corrupti tenetur. Distinctio aspernatur eveniet recusandae? \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat nemo eveniet odit sed alias minima eaque laborum, perferendis ipsam aut aperiam laboriosam. Recusandae maiores veritatis placeat eveniet accusamus at! \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta aut saepe, quas provident perspiciatis earum voluptatibus fugiat autem quod fugit, neque in rerum impedit corrupti tenetur. Distinctio aspernatur eveniet recusandae? \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat nemo eveniet odit sed alias minima eaque laborum, perferendis ipsam aut aperiam laboriosam. Recusandae maiores veritatis placeat eveniet accusamus at!`,
     },
     2: {
       title: "Title 2",
-      content: "Content 2",
+      isQuizable: true,
+      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta aut saepe, quas provident perspiciatis earum voluptatibus fugiat autem quod fugit, neque in rerum impedit corrupti tenetur. Distinctio aspernatur eveniet recusandae? \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat nemo eveniet odit sed alias minima eaque laborum, perferendis ipsam aut aperiam laboriosam. Recusandae maiores veritatis placeat eveniet accusamus at! \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta aut saepe, quas provident perspiciatis earum voluptatibus fugiat autem quod fugit, neque in rerum impedit corrupti tenetur. Distinctio aspernatur eveniet recusandae? \n
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi placeat nemo eveniet odit sed alias minima eaque laborum, perferendis ipsam aut aperiam laboriosam. Recusandae maiores veritatis placeat eveniet accusamus at!`,
     },
   };
 

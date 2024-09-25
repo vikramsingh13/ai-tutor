@@ -12,43 +12,105 @@ type KnowledgeSectionProps = {
   knowledgeData: {};
   // Topic heading for the knowledge section.
   topic: string;
+  // boolean to check if the knowledge section is quizable with a default value of false.
+  quizable?: boolean;
 };
 
-// Function to take knowledgeData and return the jsx for the knowledge section.
-const renderKnowledgeData = (knowledgeData: {}) => {
-  // Keeps track of the knowledge section index.
-  const [knowledgeSectionIndex, setKnowledgeSectionIndex] = useState(0);
+// Defines enums for the knowledge section navigation.
+enum KnowledgeSectionNavigation {
+  PREV = -1,
+  NEXT = 1,
+}
 
-  // for each section in the knowledgeData, return the title and content.
-  return Object.keys(knowledgeData).map((i) => (
-    <div key={i}>
+// Function to take knowledgeSectionIndex and knowledgeData, and returns the jsx for the knowledge section.
+const renderKnowledgeSection = (
+  knowledgeSectionIndex: number,
+  knowledgeData: {}
+) => {
+  console.log("Knowledge Section Index: ", knowledgeSectionIndex);
+  // return the stylized title and content.
+  return (
+    <article key={knowledgeSectionIndex}>
       {/* Topic section title */}
-      <div>{knowledgeData[i].title}</div>
+      <h3 className="py-4">{knowledgeData[knowledgeSectionIndex].title}</h3>
       {/* Topic section content */}
-      <div>{knowledgeData[i].content}</div>
-    </div>
-  ));
+      <p className="whitespace-pre-line text-justify">
+        {knowledgeData[knowledgeSectionIndex].content}
+      </p>
+    </article>
+  );
 };
 
 const KnowledgeSection = ({ knowledgeData, topic }: KnowledgeSectionProps) => {
+  // Keeps track of the knowledge section index.
+  const [knowledgeSectionIndex, setKnowledgeSectionIndex] = useState(0);
+
+  // Function to handle the knowledge section navigation button clicks.
+  // Takes the mouse event as an argument.
+  const handleKnowledgeSectionNavigationButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    // Get the index change value from the button click event.
+    // getAttribute returns a string, so we need to convert it to a number.
+    let indexChangeValue = event.currentTarget.getAttribute("navigation");
+    try {
+      // Convert the indexChangeValue to a number.
+      indexChangeValue = parseInt(indexChangeValue);
+    } catch (e) {
+      // error logging can be added here.
+      return;
+    }
+
+    // Calculate the new knowledge section index.
+    let newIndex = knowledgeSectionIndex + indexChangeValue;
+
+    // If the new index is less than 0 or greater than the total knowledge sections, then set it to 0 or the last index, respectively.
+    newIndex =
+      newIndex < 0
+        ? 0
+        : newIndex >= Object.keys(knowledgeData).length
+        ? Object.keys(knowledgeData).length - 1
+        : newIndex;
+    setKnowledgeSectionIndex(newIndex);
+  };
+
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col w-full h-full p-8">
       {/* Topic heading applies to all  */}
-      <div className="p-8">{topic}</div>
+      <h2 className="py-4">{topic}</h2>
       {/* Knowledge section. Can make this part scrollable later on. */}
       {/* flex-grow will make the div take up the remaining space and force the buttons to be at the bottom */}
-      <div className="flex-grow">
+      <div className="flex-grow py-4">
         {
-          // Render the knowledge data with the renderKnowledgeData function.
-          // Customized styling for the divs will be added by the renderKnowledgeData function.
-          renderKnowledgeData(knowledgeData)
+          // Render the knowledge data with the renderKnowledgeSection function.
+          // Customized styling for the divs will be added by the renderKnowledgeSection function.
+          renderKnowledgeSection(knowledgeSectionIndex, knowledgeData)
         }
       </div>
       {/* Buttons for the knowledge section */}
-      <div className="flex flex-row w-full pb-8 px-8 gap-4 justify-between">
-        <Button className="">Prev</Button>
-        <Button>Quiz</Button>
-        <Button>Next</Button>
+      <div className="flex flex-row w-full py-4 gap-4 justify-between">
+        {/* The prev button will be disabled if at the first knowledge section index */}
+        <Button
+          disabled={knowledgeSectionIndex === 0}
+          onClick={handleKnowledgeSectionNavigationButtonClick}
+          navigation={KnowledgeSectionNavigation.PREV}
+        >
+          Prev
+        </Button>
+        {/* The quiz button will be disabled if the content is not quizable */}
+        <Button disabled={!knowledgeData[knowledgeSectionIndex].isQuizable}>
+          Quiz
+        </Button>
+        {/* The next button will be disabled if at the last knowledge section index */}
+        <Button
+          disabled={
+            knowledgeSectionIndex + 1 >= Object.keys(knowledgeData).length
+          }
+          onClick={handleKnowledgeSectionNavigationButtonClick}
+          navigation={KnowledgeSectionNavigation.NEXT}
+        >
+          Next
+        </Button>
       </div>
     </div>
   );
