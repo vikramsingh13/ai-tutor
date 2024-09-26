@@ -88,6 +88,14 @@ const dummyQuizData = {
   },
 };
 
+// Dummy inquiry section chat messages
+const dummyChatMessages = {
+  0: { isUserMessage: true, message: "hello how are you?"},
+  1: { isUserMessage: false, message: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique facere dolorum mollitia assumenda esse pariatur sed inventore quaerat quod harum ipsam molestiae ad ullam, rerum ex odio? Explicabo, enim nostrum."},
+  2: { isUserMessage: true, message: "That is very odd :O "},
+  3: { isUserMessage: false, message: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero, itaque voluptatem? Distinctio minima numquam ea quisquam vel officiis itaque natus quis atque blanditiis, magnam consequatur maiores et id earum impedit."}
+}
+
 // Learning Section component is the main learning page of the application.
 // It will have primarily 3 components: knowledge section, quiz section, and inquiry section.
 // The user will be able to learn new concepts, take quizzes, and ask questions in the above sections, respectively.
@@ -117,25 +125,32 @@ const LearningSection = (props: Props) => {
     console.log("learning-section/userId/page.tsx: Quiz Submitted!");
   }
 
+  // Function to handle user sending chat messages in the inquiry section
+  const handleSendMessage = (chatData, message) => {
+    /* Todo */
+    /* Make the API call to the AI model with the chat data and user message and additional context */
+    console.log("learning-section/userId/page.tsx: Message sent!")
+  }
+
   return (
     /* Learning Section should take up full width and height available to it. */
-    <div className="flex flex-col w-full min-h-screen bg-blue-300 text-center items-align">
+    <div className="flex flex-col w-full min-h-screen bg-custom-bg-dark text-center items-align text-white">
       {/* learning section heading will be at the top followed by the 3 components. */}
-      <div>LearningSection Heading</div>
+      <div className="p-4 bg-blue-950">LearningSection Heading</div>
       {/* Kwowledge section will take up the left 50% of the rest of the column */}
       <div className="flex flex-1 w-full">
-        <div className="flex-1 flex-grow bg-blue-200 border-y-4 border-l-4 border-r-2">
+        <div className="flex-1 flex-grow border-y-4 border-l-4 border-r-2 bg-custom-bg-dark-2">
           {/* KnowledgeSection takes knowledgeData and topic as props */}
           <KnowledgeSection knowledgeData={knowledgeData} topic={topic}/>
         </div>
         {/* Quiz and Inquiry sections will take up the right 50% of the rest of the column and they will be stacked on top of each other */}
-        <div className="flex-1 flex flex-col flex-grow bg-orange-300 border-y-4 border-l-2 border-r-4">
-          <div className="h-1/2 bg-orange-300 border-b-2">
+        <div className="flex-1 flex flex-col flex-grow border-y-4 border-l-2 border-r-4">
+          <div className="h-1/2 border-b-2 bg-black">
             {/* QuizSection takes quizData and setQuizData as props */}
             <QuizSection quizData={quizData} setQuizData={setQuizData} submitQuiz={handleQuizSubmission}/>
           </div>
-          <div className="h-1/2 bg-orange-300 border-t-2">
-            <InquirySection />
+          <div className="h-1/2 border-t-2">
+            <InquirySection chatData={dummyChatMessages} handleSendMessage={handleSendMessage}/>
           </div>
         </div>
       </div>

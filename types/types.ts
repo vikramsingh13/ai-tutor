@@ -14,6 +14,14 @@ export enum QuizQuestionTypes {
   TRUE_FALSE = "trueFalse",
   SHORT_ANSWER = "shortAnswer",
   ESSAY = "essay",
+}
+
+// Defines the AIChat props.
+// The props require an object with numbers keys for order of chat messages.
+// The values of the object is another object with attributes isUserMessage and message.
+export type AIChatProps = {
+  // chatData contains the conversation history as a JSON.
+  chatData: {};
+  // Function to handle user sending messages.
+  handleSendMessage: () => void;
 };
-
-

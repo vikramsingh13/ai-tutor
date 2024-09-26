@@ -10,6 +10,11 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+        'ai-chat-background': '#212121',
+        'ai-chat-user-bubble': '#2F2F2F',
+        'custom-bg-dark': '#212121',
+        'custom-bg-dark-2': '#171717',
+        'custom-bg-light': '#2F2F2F',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

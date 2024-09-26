@@ -39,6 +39,7 @@ const renderKnowledgeSection = (
 };
 
 const KnowledgeSection = ({ knowledgeData, topic }: KnowledgeSectionProps) => {
+  /* Todo: refactor the index tracking logic to the parent. */
   // Keeps track of the knowledge section index.
   const [knowledgeSectionIndex, setKnowledgeSectionIndex] = useState(0);
 

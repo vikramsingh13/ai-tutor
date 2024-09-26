@@ -18,6 +18,7 @@ type QuizSectionProps = {
 };
 
 const QuizSection = ({ quizData, setQuizData, submitQuiz }: QuizSectionProps) => {
+  /* Todo: refactor the index tracking logic to the parent. */
   // Keep track of the quiz question index.
   const [quizQuestionIndex, setQuizQuestionIndex] = useState(0);
 
