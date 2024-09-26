@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // component imports for the learning section
@@ -103,33 +103,23 @@ const LearningSection = (props: Props) => {
   // Initialize the router.
   // Will be used for further routing and accessing query parameters, e.g. userId
   const router = useRouter();
-
-  // Will keep track of the user id from the query parameters to fetch the user's learning section
-  const [userId, setUserId] = useState("");
+  // use the useParams hooks to acquire the userId from the query slug.
+  const { userId } = useParams();
 
   // Track the quiz data for the quiz section.
   const [quizData, setQuizData] = useState(dummyQuizData);
 
-  // useEffect to check if the router is ready,
-  // and if it is, then we can access the query parameters to get the user id
-  useEffect(() => {
-    if (router.isReady) {
-      setUserId(router.query.userId);
-      console.log("User ID: ", userId);
-    }
-  }, [router.isReady]);
-
-  // Function to handle Quiz submission
+  // Function to handle Quiz submission.
   const handleQuizSubmission = () => {
     /* Todo */
-    console.log("learning-section/userId/page.tsx: Quiz Submitted!");
+    console.log(`/${userId}/learning-section/page.tsx: Quiz Submitted!`);
   }
 
-  // Function to handle user sending chat messages in the inquiry section
+  // Function to handle user sending chat messages in the inquiry section.
   const handleSendMessage = (chatData, message) => {
     /* Todo */
     /* Make the API call to the AI model with the chat data and user message and additional context */
-    console.log("learning-section/userId/page.tsx: Message sent!")
+    console.log(`/${userId}/learning-section/page.tsx: Message sent!`)
   }
 
   return (

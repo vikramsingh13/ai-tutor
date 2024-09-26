@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   // Initialize the router.
   const router = useRouter();
+  // test user for development.
+  const userId = 'test-user';
   return (
     <div className="">
-      { /* Redirect to /learning-section/test-user for now */ }
-      { router.push('/learning-section/test-user') }
+      { /* Redirect to /test-user/learning-section for now */ }
+      { redirect(`/${userId}/dashboard`) }
     </div>
   );
 }
