@@ -2,6 +2,8 @@ import { useState } from "react";
 
 // import shadcn buttons to be used as prev, next, submit, quiz, etc.
 import { Button } from "@/components/ui/button";
+// import the enum for the section navigation buttons.
+import { SectionNavigationButtonTypes } from "@/types/types";
 
 // Defines the props type for the KnowledgeSection component.
 // The props will have knowledgeData and topic.
@@ -14,20 +16,15 @@ type KnowledgeSectionProps = {
   topic: string;
   // boolean to check if the knowledge section is quizable with a default value of false.
   quizable?: boolean;
+  // Function to handle the quiz button click.
+  handleQuizButtonClick?: () => void;
 };
-
-// Defines enums for the knowledge section navigation.
-enum KnowledgeSectionNavigation {
-  PREV = -1,
-  NEXT = 1,
-}
 
 // Function to take knowledgeSectionIndex and knowledgeData, and returns the jsx for the knowledge section.
 const renderKnowledgeSection = (
   knowledgeSectionIndex: number,
   knowledgeData: {}
 ) => {
-  console.log("Knowledge Section Index: ", knowledgeSectionIndex);
   // return the stylized title and content.
   return (
     <article key={knowledgeSectionIndex}>
@@ -93,7 +90,7 @@ const KnowledgeSection = ({ knowledgeData, topic }: KnowledgeSectionProps) => {
         <Button
           disabled={knowledgeSectionIndex === 0}
           onClick={handleKnowledgeSectionNavigationButtonClick}
-          navigation={KnowledgeSectionNavigation.PREV}
+          navigation={SectionNavigationButtonTypes.PREV}
         >
           Prev
         </Button>
@@ -107,7 +104,7 @@ const KnowledgeSection = ({ knowledgeData, topic }: KnowledgeSectionProps) => {
             knowledgeSectionIndex + 1 >= Object.keys(knowledgeData).length
           }
           onClick={handleKnowledgeSectionNavigationButtonClick}
-          navigation={KnowledgeSectionNavigation.NEXT}
+          navigation={SectionNavigationButtonTypes.NEXT}
         >
           Next
         </Button>
