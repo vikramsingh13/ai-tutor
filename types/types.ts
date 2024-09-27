@@ -5,8 +5,13 @@
 export type UserPageProps = {
   // userId will be used by various pages to render user specific content.
   userId: string;
-}
+};
 
+// Defines the enum types for login: SIGN_IN, SIGN_UP
+export enum UserLoginType {
+  SIGN_IN = "sign-in",
+  SIGN_UP = "sign-up"
+}
 
 // Defines the enum types for the section navigation buttons.
 // Values are -1 and 1 to represent the previous and next buttons.
