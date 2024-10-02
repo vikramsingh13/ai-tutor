@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 // Import the SessionWrapper component to wrap the entire application with the SessionProvider for managing sessions.
 import SessionWrapper from "@/components/session-wrapper";
+// Import the Navbar to add to the top of the application.
+import Navbar from "@/components/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +33,11 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className="bg-custom-bg-dark text-white">{children}</div>
+          <div className="bg-custom-bg-dark text-white">
+            <Navbar>
+            {children}
+            </Navbar>
+          </div>
         </body>
       </html>
     </SessionWrapper>
