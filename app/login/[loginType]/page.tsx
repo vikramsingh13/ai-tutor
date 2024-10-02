@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+// Import the signIn fucntion from next/auth to redirect sign in requests.
+import { signIn } from "next-auth/react";
 // Import navigation hooks to help with redirection and getting query params.
 import { useParams, useRouter } from "next/navigation";
-// Import the login types to decide whether to render signin or signup forms.
-import { UserLoginType } from "@/types/types";
+// Import the login and oauth types to decide whether to render signin or signup forms.
+import { UserLoginType, OAuthVendorType } from "@/types/types";
 // Import Zod to help with validation and form schema.
 import { z } from "zod";
 // Import zod resolver to be used with react-hook-form.
@@ -62,9 +64,13 @@ const Login = () => {
   };
 
   // Handles OAuth button click.
-  const handleOAuthButtonClick = () => {
+  const handleOAuthButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    // Get the oauth vendor type from the button oauth attribute.
+    const oAuthVendor = event.currentTarget.getAttribute("oAuth");
     // Go to the api OAuth sign in page.
-    router.push(`/api/auth/signin`);
+    signIn(oAuthVendor);
   };
 
   // Get the login type from the query params
@@ -76,20 +82,25 @@ const Login = () => {
       <div className="flex flex-col w-[400px] m-4">
         <h1 className="p-2 text-left">Login with:</h1>
         <div className="flex w-full p-2 justify-center gap-4">
-          <Button onClick={handleOAuthButtonClick}>Github</Button>
-          <Button onClick={handleOAuthButtonClick}>Google</Button>
+          <Button
+            onClick={handleOAuthButtonClick}
+            oAuth={OAuthVendorType.GITHUB}
+          >
+            Github
+          </Button>
+          <Button onClick={handleOAuthButtonClick} oAuth={OAuthVendorType.GOOGLE}>Google</Button>
         </div>
         <br />
         <hr />
       </div>
-      <div  className="w-[400px] m-4">
+      <div className="w-[400px] m-4">
         <h1 className="p-2 text-left">Or:</h1>
         <Tabs defaultValue={UserLoginType.SIGN_IN}>
           {/* List of tabs we have. Use grid to style the tab buttons properly.*/}
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className="grid w-full grid-cols-2 gap-4">
             {/* Trigger values to display the respective TabsContent. */}
-            <TabsTrigger value={UserLoginType.SIGN_IN}>Sign In</TabsTrigger>
-            <TabsTrigger value={UserLoginType.SIGN_UP}>Sign Up</TabsTrigger>
+            <TabsTrigger value={UserLoginType.SIGN_IN} className="">Sign In</TabsTrigger>
+            <TabsTrigger value={UserLoginType.SIGN_UP} className="">Sign Up</TabsTrigger>
           </TabsList>
           <TabsContent value={UserLoginType.SIGN_IN} className="py-4">
             {/* Use shadcn Form provider component. */}

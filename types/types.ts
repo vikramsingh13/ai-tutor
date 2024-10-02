@@ -7,10 +7,16 @@ export type UserPageProps = {
   userId: string;
 };
 
-// Defines the enum types for login: SIGN_IN, SIGN_UP
+// Defines the enum types for login: SIGN_IN, SIGN_UP.
 export enum UserLoginType {
   SIGN_IN = "sign-in",
   SIGN_UP = "sign-up"
+}
+
+// Defines the enum types for OAuth vendors.
+export enum OAuthVendorType {
+  GOOGLE = "google",
+  GITHUB = "github"
 }
 
 // Defines the enum types for the section navigation buttons.
