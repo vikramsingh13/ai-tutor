@@ -124,22 +124,22 @@ const LearningSection = (props: Props) => {
 
   return (
     /* Learning Section should take up full width and height available to it. */
-    <div className="flex flex-col w-full min-h-screen bg-custom-bg-dark text-center items-align text-white">
+    <div className="flex flex-col w-full h-full bg-custom-bg-dark text-center items-align text-white overflow-hidden">
       {/* learning section heading will be at the top followed by the 3 components. */}
-      <div className="p-4 bg-blue-950">LearningSection Heading</div>
+      <div className="flex-1 p-4 bg-blue-950">LearningSection Heading</div>
       {/* Kwowledge section will take up the left 50% of the rest of the column */}
-      <div className="flex flex-1 w-full">
-        <div className="flex-1 flex-grow border-y-4 border-l-4 border-r-2 bg-custom-bg-dark-2">
+      <div className="flex flex-grow w-full">
+        <div className="flex-grow border-y-4 border-l-4 border-r-2 bg-custom-bg-dark-2 overflow-auto">
           {/* KnowledgeSection takes knowledgeData and topic as props */}
           <KnowledgeSection knowledgeData={knowledgeData} topic={topic}/>
         </div>
         {/* Quiz and Inquiry sections will take up the right 50% of the rest of the column and they will be stacked on top of each other */}
-        <div className="flex-1 flex flex-col flex-grow border-y-4 border-l-2 border-r-4">
-          <div className="h-1/2 border-b-2 bg-black">
+        <div className="flex flex-col flex-grow border-y-4 border-l-2 border-r-4">
+          <div className="h-1/2 border-b-2 bg-black overflow-auto">
             {/* QuizSection takes quizData and setQuizData as props */}
             <QuizSection quizData={quizData} setQuizData={setQuizData} submitQuiz={handleQuizSubmission}/>
           </div>
-          <div className="h-1/2 border-t-2">
+          <div className="h-1/2 border-t-2 overflow-auto scroll-m-1">
             <InquirySection chatData={dummyChatMessages} handleSendMessage={handleSendMessage}/>
           </div>
         </div>

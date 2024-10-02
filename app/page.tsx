@@ -19,7 +19,7 @@ export default function Home() {
     router.push(`login/${loginType}`);
   }
   return (
-    <div className="bg-custom-bg-dark text-white">
+    <div className="">
       { /* Redirect to /test-user/learning-section for now */ }
       {/* { redirect(`/${userId}/dashboard`) } */}
 

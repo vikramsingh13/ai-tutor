@@ -22,10 +22,10 @@ const Dashboard = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col justify-center text-center items-center h-full">
       <div>Dashboard</div>
       <Button onClick={handleContinueLearningClick}>Continue Learning</Button>
-    </>
+    </div>
   );
 };
 
