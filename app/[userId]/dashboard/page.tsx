@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 // import the UserPageProps to further extend as DashboardProps.
 import { UserPageProps } from "@/types/types";
-// import the shadcn ui components
+// import the shadcn ui components.
 import { Button } from "@/components/ui/button";
 
 // Defines the Dashboard Props object.
