@@ -1,11 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // import the router hooks from next navigation.
 import { useRouter, useParams } from "next/navigation";
 // import the UserPageProps to further extend as DashboardProps.
 import { UserPageProps } from "@/types/types";
 // import the shadcn ui components.
 import { Button } from "@/components/ui/button";
+// Import the KnowledgeContext to use display the modules.
+import { KnowledgeContext } from '@/contexts/knowledge-wrapper';
 
 // Defines the Dashboard Props object.
 interface DashboardProps extends UserPageProps {}
@@ -15,6 +17,10 @@ const Dashboard = () => {
   const router = useRouter();
   // use the useParams hooks to acquire the userId from the query slug.
   const { userId } = useParams();
+  // Get the knowledge context from the KnowledgeWrapper.
+  const knowledgeContext = useContext(KnowledgeContext);
+
+  console.log(knowledgeContext);
 
   // Function to handle learning section click.
   const handleContinueLearningClick = () => {

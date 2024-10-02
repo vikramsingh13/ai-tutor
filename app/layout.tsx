@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 // Import the SessionWrapper component to wrap the entire application with the SessionProvider for managing sessions.
-import SessionWrapper from "@/components/session-wrapper";
+import SessionWrapper from "@/contexts/session-wrapper";
 // Import the Navbar to add to the top of the application.
 import Navbar from "@/components/navbar";
 
