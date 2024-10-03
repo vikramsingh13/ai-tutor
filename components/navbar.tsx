@@ -36,10 +36,16 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
     router.push(`/login/${loginType}`);
   };
 
+  // Function to handle logo click.
+  const handleLogoClick = () => {
+    // Redirect to homepage.
+    router.push("/");
+  }
+
   return (
     <div className="w-full">
       <navbar className="flex bg-custom-bg-dark w-full p-4 justify-center text-center items-center">
-        <p>TutorFlex.app</p>
+        <p onClick={handleLogoClick} className="cursor-pointer text-[2rem] max-sm:text-[1rem]">TutorFlex.app</p>
         {/* Takes the user to the signin/signup pages. */}
         {/* This Login button redirects to the sign in page by using the loginType prop */}
         <div className="flex flex-grow justify-end">

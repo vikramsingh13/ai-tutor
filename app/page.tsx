@@ -49,7 +49,7 @@ export default function Home() {
         <h1 className="p-4 font-bold text-[4rem] max-md:text-[3rem] max-sm:text-[2rem]">
           Enhanced Tutoring for Life-long Learners
         </h1>
-        <p className="p-2 max-md:text-[1.5rem] max-sm:text-[1rem] text-[2rem]">
+        <p className="p-2 max-md:text-[1.5rem] max-sm:text-[1rem] text-[1.5rem]">
           Personalize a learning pathway to amplify your learning, improve
           knowledge retention, and achieve success.
         </p>

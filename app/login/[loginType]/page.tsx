@@ -70,6 +70,7 @@ const Login = () => {
     // Get the oauth vendor type from the button oauth attribute.
     const oAuthVendor = event.currentTarget.getAttribute("oauth");
     // Go to the api OAuth sign in page.
+    // signIn function comes from "next-auth/react".
     signIn(oAuthVendor);
   };
 
