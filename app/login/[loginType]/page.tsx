@@ -68,7 +68,7 @@ const Login = () => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     // Get the oauth vendor type from the button oauth attribute.
-    const oAuthVendor = event.currentTarget.getAttribute("oAuth");
+    const oAuthVendor = event.currentTarget.getAttribute("oauth");
     // Go to the api OAuth sign in page.
     signIn(oAuthVendor);
   };
@@ -84,11 +84,11 @@ const Login = () => {
         <div className="flex w-full p-2 justify-center gap-4">
           <Button
             onClick={handleOAuthButtonClick}
-            oAuth={OAuthVendorType.GITHUB}
+            oauth={OAuthVendorType.GITHUB}
           >
             Github
           </Button>
-          <Button onClick={handleOAuthButtonClick} oAuth={OAuthVendorType.GOOGLE}>Google</Button>
+          <Button onClick={handleOAuthButtonClick} oauth={OAuthVendorType.GOOGLE}>Google</Button>
         </div>
         <br />
         <hr />

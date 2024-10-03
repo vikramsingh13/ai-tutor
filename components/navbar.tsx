@@ -33,7 +33,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
     // Get the login type from the button click event.
     const loginType = event.currentTarget.getAttribute("logintype");
     // Push the login page with the login type to the router.
-    router.push(`login/${loginType}`);
+    router.push(`/login/${loginType}`);
   };
 
   return (
