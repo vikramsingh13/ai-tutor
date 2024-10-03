@@ -4,10 +4,10 @@ import { useState, useEffect, useContext } from "react";
 import { useRouter, useParams } from "next/navigation";
 // import the UserPageProps to further extend as DashboardProps.
 import { UserPageProps } from "@/types/types";
-// import the shadcn ui components.
-import { Button } from "@/components/ui/button";
 // Import the KnowledgeContext to use display the modules.
-import { KnowledgeContext } from '@/contexts/knowledge-wrapper';
+import { KnowledgeContext } from "@/contexts/knowledge-wrapper";
+// Import the custom KnowledgeCard component to display the course content cards.
+import KnowledgeCard from "@/components/knowledge-card";
 
 // Defines the Dashboard Props object.
 interface DashboardProps extends UserPageProps {}
@@ -20,17 +20,45 @@ const Dashboard = () => {
   // Get the knowledge context from the KnowledgeWrapper.
   const knowledgeContext = useContext(KnowledgeContext);
 
-  console.log(knowledgeContext);
-
-  // Function to handle learning section click.
-  const handleContinueLearningClick = () => {
+  // Function to handle start module button click in the knowledge cards.
+  // Updates the current module index in the KnowledgeContext.
+  // Pushes the learning section to the router.
+  const handleStartModuleButtonClick = () => {
+    // Update the currentModuleIndex.
+    // TODO
     router.push(`/${userId}/learning-section`);
   };
 
+  // Function to generate the Knowledge Cards from the Knowledge Context data
+  const renderKnowledgeCards = () => {
+    // Get the modules from the knowledgeContext.
+    const modules = knowledgeContext["modules"];
+    return Object.keys(modules).map((i) => {
+      return (
+        <div className="flex-1" key={i}>
+          <KnowledgeCard
+            moduleIndex={i}
+            title={modules[i]["title"]}
+            description={modules[i]["description"]}
+            cardMaxHeight={400}
+            cardDescriptionMaxHeight={200}
+            handleCardButtonClick={handleStartModuleButtonClick}
+            buttonText={"Start Module"}
+          />
+        </div>
+      );
+    });
+  };
+
   return (
-    <div className="flex flex-col justify-center text-center items-center h-full">
-      <div>Dashboard</div>
-      <Button onClick={handleContinueLearningClick}>Continue Learning</Button>
+    <div className="flex flex-col justify-center text-center items-center h-full gap-4">
+      <div className="text-[3rem]">Dashboard</div>
+      <div className="text-[1.5rem]">
+        Course: {knowledgeContext["courseTopic"]}
+      </div>
+      <div className="flex flex-wrap max-w-[900px] gap-4">
+        {renderKnowledgeCards()}
+      </div>
     </div>
   );
 };
