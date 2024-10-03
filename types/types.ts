@@ -35,6 +35,21 @@ export enum QuizQuestionTypes {
   ESSAY = "essay",
 }
 
+
+// Defines the props type for the knowledge cards.
+export type KnowledgeCardProps = {
+  moduleIndex: number;
+  title: string;
+  // This function will invoke the button click handler when the card button is clicked.
+  handleCardButtonClick: () => void;
+  // These are optional and should have default values setup when the type is being used somewhere.
+  description?: string;
+  cardMaxHeight?: number;
+  cardDescriptionMaxHeight?: number;
+  buttonText?: string;
+
+}
+
 // Defines the AIChat props.
 // The props require an object with numbers keys for order of chat messages.
 // The values of the object is another object with attributes isUserMessage and message.

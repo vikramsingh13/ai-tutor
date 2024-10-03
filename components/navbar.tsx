@@ -31,7 +31,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     // Get the login type from the button click event.
-    const loginType = event.currentTarget.getAttribute("loginType");
+    const loginType = event.currentTarget.getAttribute("logintype");
     // Push the login page with the login type to the router.
     router.push(`login/${loginType}`);
   };
@@ -45,7 +45,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
         <div className="flex flex-grow justify-end">
           <Button
             onClick={handleLoginButtonClick}
-            loginType={UserLoginType.SIGN_IN}
+            logintype={UserLoginType.SIGN_IN}
           >
             Login
           </Button>
