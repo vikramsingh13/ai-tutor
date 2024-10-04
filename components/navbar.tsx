@@ -26,6 +26,8 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
 
   // Initialize the router.
   const router = useRouter();
+  // Get pathname so when the session is not valid, the landing page and other non sign in pages will still be showing.
+  const pathname = usePathname();
   // Function to handle the login button click by the user.
   const handleLoginButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -40,12 +42,18 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
   const handleLogoClick = () => {
     // Redirect to homepage.
     router.push("/");
-  }
+  };
 
+  console.log("nav pathname: ", pathname);
   return (
     <div className="w-full">
       <navbar className="flex bg-custom-bg-dark w-full p-4 justify-center text-center items-center">
-        <p onClick={handleLogoClick} className="cursor-pointer text-[2rem] max-sm:text-[1rem]">TutorFlex.app</p>
+        <p
+          onClick={handleLogoClick}
+          className="cursor-pointer text-[2rem] max-sm:text-[1rem]"
+        >
+          TutorFlex.app
+        </p>
         {/* Takes the user to the signin/signup pages. */}
         {/* This Login button redirects to the sign in page by using the loginType prop */}
         <div className="flex flex-grow justify-end">
@@ -57,7 +65,14 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
           </Button>
         </div>
       </navbar>
-      {!isSessionValid ? <UserNotLoggedin /> : children}
+      {/* If the session is invalid and the user is trying to access dashboard, learning-section, etc. show the UserNotLoggedin component instead of the children. */}
+      {!isSessionValid &&
+      (pathname.includes("/dashboard") ||
+        pathname.includes("/learning-section")) ? (
+        <UserNotLoggedin />
+      ) : (
+        children
+      )}
     </div>
   );
 };
