@@ -19,20 +19,34 @@ const Dashboard = () => {
   const { userId } = useParams();
   // Get the knowledge context from the KnowledgeWrapper.
   const knowledgeContext = useContext(KnowledgeContext);
+  // Get the knowledge context data.
+  const knowledgeContextData = knowledgeContext["knowledgeContextData"];
+  // Get the setter for the knowledge context data.
+  const setKnowledgeContextData = knowledgeContext["setKnowledgeContextData"];
+  // Get the current module index.
+  const currentModuleIndex = knowledgeContext["currentModuleIndex"];
+  // Get the setter for current module index.
+  const setCurrentModuleIndex = knowledgeContext["setCurrentModuleIndex"];
 
   // Function to handle start module button click in the knowledge cards.
   // Updates the current module index in the KnowledgeContext.
   // Pushes the learning section to the router.
-  const handleStartModuleButtonClick = () => {
-    // Update the currentModuleIndex.
-    // TODO
+  const handleStartModuleButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    // Update the currentModuleIndex using the setter provided by the context wrapper.
+    setCurrentModuleIndex(event.currentTarget.getAttribute("moduleIndex"));
+    console.log(
+      "module index change: ",
+      event.currentTarget.getAttribute("moduleIndex")
+    );
     router.push(`/${userId}/learning-section`);
   };
 
   // Function to generate the Knowledge Cards from the Knowledge Context data
   const renderKnowledgeCards = () => {
     // Get the modules from the knowledgeContext.
-    const modules = knowledgeContext["modules"];
+    const modules = knowledgeContextData["modules"];
     return Object.keys(modules).map((i) => {
       return (
         <div className="flex-1" key={i}>
@@ -54,7 +68,7 @@ const Dashboard = () => {
     <div className="flex flex-col justify-center text-center items-center h-full gap-4">
       <div className="text-[3rem]">Dashboard</div>
       <div className="text-[1.5rem]">
-        Course: {knowledgeContext["courseTopic"]}
+        Course: {knowledgeContextData["courseTopic"]}
       </div>
       <div className="flex flex-wrap max-w-[900px] gap-4">
         {renderKnowledgeCards()}

@@ -1,7 +1,6 @@
-// Dummy course data will be used for use dashboard following the course creations logic flow, and will be used to test the learning section layout and functionality. 
+// Dummy course data will be used for use dashboard following the course creations logic flow, and will be used to test the learning section layout and functionality.
 export const dummyCourseData = {
   courseTopic: "Computers",
-  currentModuleIndex: 1,
   modules: {
     1: {
       title: "Introduction to Computers",
