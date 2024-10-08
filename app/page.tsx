@@ -11,6 +11,8 @@ import { UserLoginType } from "@/types/types";
 export default function Home() {
   // Track user search/generate course input.
   const [courseInput, setCourseInput] = useState("");
+  // Initialize the router from 'next/navigation';
+  const router = useRouter();
 
   // Handles the generate course button click.
   const handleGenerateCourseButtonClick = () => {
@@ -31,8 +33,9 @@ export default function Home() {
   // Defines the logic to handle course generation.
   // Takes a courseTopic string as a param.
   const generateCourseWithTopic = (courseTopic: string) => {
-    /* Todo: implement the course generation logic. */
-    console.log("app/page: generating course for ", courseTopic);
+    /* Todo: check if the user is logged in or not.
+    If not logged in, redirect to signup page. */
+    router.push(`asdfasfa/dashboard/${courseTopic}`);
   };
 
   // Handles on the user course input value change.

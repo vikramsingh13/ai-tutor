@@ -8,6 +8,8 @@ import { UserPageProps } from "@/types/types";
 import { KnowledgeContext } from "@/contexts/knowledge-wrapper";
 // Import the custom KnowledgeCard component to display the course content cards.
 import KnowledgeCard from "@/components/knowledge-card";
+// Import the ai-actions to generate course data.
+import { getAIGeneratedCourseData } from "@/lib/actions/external/ai-actions";
 
 // Defines the Dashboard Props object.
 interface DashboardProps extends UserPageProps {}
@@ -17,6 +19,8 @@ const Dashboard = () => {
   const router = useRouter();
   // use the useParams hooks to acquire the userId from the query slug.
   const { userId } = useParams();
+  // Get the user course description from the params.
+  const { userCourseDescription } = useParams();
   // Get the knowledge context from the KnowledgeWrapper.
   const knowledgeContext = useContext(KnowledgeContext);
   // Get the knowledge context data.
@@ -28,6 +32,17 @@ const Dashboard = () => {
   // Get the setter for current module index.
   const setCurrentModuleIndex = knowledgeContext["setCurrentModuleIndex"];
 
+  // Use useEffect hook to fetch and set the knowledgeContextData.
+  useEffect(() => {
+    // Use an async function for HTTP requests.
+    (async () => {
+      // Returns a JSON of the course data.
+      const data = await getAIGeneratedCourseData(userCourseDescription);
+      // Update the knowledgeContextData with the fetched data.
+      setKnowledgeContextData(JSON.parse(data));
+    })();
+  }, [userCourseDescription]);
+
   // Function to handle start module button click in the knowledge cards.
   // Updates the current module index in the KnowledgeContext.
   // Pushes the learning section to the router.
@@ -35,11 +50,7 @@ const Dashboard = () => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     // Update the currentModuleIndex using the setter provided by the context wrapper.
-    setCurrentModuleIndex(event.currentTarget.getAttribute("moduleIndex"));
-    console.log(
-      "module index change: ",
-      event.currentTarget.getAttribute("moduleIndex")
-    );
+    setCurrentModuleIndex(event.currentTarget.getAttribute("moduleindex"));
     router.push(`/${userId}/learning-section`);
   };
 

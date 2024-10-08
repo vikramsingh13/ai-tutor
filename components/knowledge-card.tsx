@@ -41,7 +41,7 @@ const KnowledgeCard = ({
           {description ? description : ""}
         </CardDescription>
       </CardHeader>
-      <Button onClick={handleCardButtonClick} moduleIndex={moduleIndex}>
+      <Button onClick={handleCardButtonClick} moduleindex={moduleIndex}>
         {buttonText ? buttonText : "Start"}
       </Button>
     </Card>
