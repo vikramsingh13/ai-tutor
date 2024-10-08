@@ -15,11 +15,21 @@ import {
 import { KnowledgePropsType } from "@/types/types";
 
 // Component to display the knowledge cards in dashboard and possibly other places.
-const KnowledgeCard = ({moduleIndex, title, description, cardMaxHeight, cardDescriptionMaxHeight, handleCardButtonClick, buttonText}: KnowledgeCardProps) => {
+const KnowledgeCard = ({
+  moduleIndex,
+  title,
+  description,
+  cardMaxHeight,
+  cardDescriptionMaxHeight,
+  handleCardButtonClick,
+  buttonText,
+}: KnowledgeCardProps) => {
   // Defines the class names for the card component.
-  const cardClasses = `p-4 max-h-[${cardMaxHeight ? cardMaxHeight : 400}px]`
+  const cardClasses = `p-4 max-h-[${cardMaxHeight ? cardMaxHeight : 400}px]`;
   // Defines the class names for the Card description.
-  const descriptionClasses = `max-h-[${cardDescriptionMaxHeight ? cardDescriptionMaxHeight : 200}px] text-clip overflow-hidden ...`
+  const descriptionClasses = `max-h-[${
+    cardDescriptionMaxHeight ? cardDescriptionMaxHeight : 200
+  }px] text-clip overflow-hidden ...`;
   return (
     <Card className={cardClasses} key={moduleIndex}>
       <CardHeader>
@@ -27,11 +37,11 @@ const KnowledgeCard = ({moduleIndex, title, description, cardMaxHeight, cardDesc
           {moduleIndex}. {title}
         </CardTitle>
         <CardDescription className={descriptionClasses}>
-            {/* Description is optional. Makes the card reusable for data with no description and just a title/heading. */}
-            {description ? description : ""}
+          {/* Description is optional. Makes the card reusable for data with no description and just a title/heading. */}
+          {description ? description : ""}
         </CardDescription>
       </CardHeader>
-      <Button onClick={handleCardButtonClick} module={moduleIndex}>
+      <Button onClick={handleCardButtonClick} moduleindex={moduleIndex}>
         {buttonText ? buttonText : "Start"}
       </Button>
     </Card>

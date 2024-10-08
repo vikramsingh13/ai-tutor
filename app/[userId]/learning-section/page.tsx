@@ -79,14 +79,15 @@ const LearningSection = () => {
   // Track the quiz data for the quiz section.
   const [quizData, setQuizData] = useState(dummyQuizData);
 
-  // Get the module data from the knowledge context.
+  // Get the context from the knowledge context.
   const knowledgeContext = useContext(KnowledgeContext);
-  // knowledgeContext has the currentModuleIndex to indicate which module to display currently.
+  // currentModuleIndex to indicate which module to display currently.
   const moduleIndex = knowledgeContext["currentModuleIndex"];
   // Use the moduleIndex to get the current module data.
-  const moduleData = knowledgeContext["modules"][moduleIndex];
+  const moduleData =
+    knowledgeContext["knowledgeContextData"]["modules"][moduleIndex];
   // Topic title is also in the knowledgeContext as courseTopic.
-  const topicTitle = knowledgeContext["courseTopic"];
+  const topicTitle = knowledgeContext["knowledgeContextData"]["courseTopic"];
 
   // Function to handle Quiz button click.
   const handleQuizButtonClick = () => {

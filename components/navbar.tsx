@@ -44,7 +44,6 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
     router.push("/");
   };
 
-  console.log("nav pathname: ", pathname);
   return (
     <div className="w-full">
       <navbar className="flex bg-custom-bg-dark w-full p-4 justify-center text-center items-center">
