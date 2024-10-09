@@ -14,6 +14,9 @@ import { QuizQuestionTypes } from "@/types/types";
 // Import the knowledgeContext to access the module content to display.
 import { KnowledgeContext } from "@/contexts/knowledge-wrapper";
 
+// Import the AI actions functions to get AI generated quiz data.
+import { getAIGeneratedQuizDataFromModule } from "@/lib/actions/external/ai-actions";
+
 // Dummy quiz data for the quiz section.
 const dummyQuizData = {
   0: {
@@ -77,7 +80,8 @@ const LearningSection = () => {
   const { userId } = useParams();
 
   // Track the quiz data for the quiz section.
-  const [quizData, setQuizData] = useState(dummyQuizData);
+  // Initialize with empty object to show no quiz data in the beginning.
+  const [quizData, setQuizData] = useState({});
 
   // Get the context from the knowledge context.
   const knowledgeContext = useContext(KnowledgeContext);
@@ -89,12 +93,18 @@ const LearningSection = () => {
   // Topic title is also in the knowledgeContext as courseTopic.
   const topicTitle = knowledgeContext["knowledgeContextData"]["courseTopic"];
 
-  // Function to handle Quiz button click.
-  const handleQuizButtonClick = () => {
+  // Async function to handle Quiz button click.
+  // Utilizes ai-actions function to fetch AI generated quiz data.
+  const handleQuizButtonClick = async () => {
     /* Todo */
     console.log(
       `app/[userId]/learning-section/page: Quiz button clicked: ${moduleIndex}`
     );
+    // Send the moduleData as a param so the AI can generate relevant quiz QAs.
+    let data = await getAIGeneratedQuizDataFromModule(moduleData);
+    // Set the quiz data after JSON parsing the fetched AI generated data.
+    // This will re-render the quiz section.
+    setQuizData(JSON.parse(data));
   };
 
   // Function to handle Quiz submission.

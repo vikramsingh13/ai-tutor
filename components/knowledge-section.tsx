@@ -107,14 +107,6 @@ const KnowledgeSection = ({
         </Button>
         {/* The quiz button will be disabled if the content is not quizable */}
         <Button
-          disabled={
-            !(
-              knowledgeData["subModules"][knowledgeSectionIndex].hasOwnProperty(
-                "isQuizable"
-              ) &&
-              knowledgeData["subModules"][knowledgeSectionIndex]["isQuizable"]
-            )
-          }
           onClick={handleQuizButtonClick}
         >
           Quiz
