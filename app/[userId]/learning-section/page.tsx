@@ -82,6 +82,8 @@ const LearningSection = () => {
   // Track the quiz data for the quiz section.
   // Initialize with empty object to show no quiz data in the beginning.
   const [quizData, setQuizData] = useState({});
+  // Track if quiz is submitted.
+  const [isQuizSubmitted, setIsQuizSubmitted] = useState(false);
 
   // Get the context from the knowledge context.
   const knowledgeContext = useContext(KnowledgeContext);
@@ -96,21 +98,27 @@ const LearningSection = () => {
   // Async function to handle Quiz button click.
   // Utilizes ai-actions function to fetch AI generated quiz data.
   const handleQuizButtonClick = async () => {
-    /* Todo */
-    console.log(
-      `app/[userId]/learning-section/page: Quiz button clicked: ${moduleIndex}`
-    );
+    /* TODO: uncomment after frontend implementation
     // Send the moduleData as a param so the AI can generate relevant quiz QAs.
     let data = await getAIGeneratedQuizDataFromModule(moduleData);
     // Set the quiz data after JSON parsing the fetched AI generated data.
     // This will re-render the quiz section.
     setQuizData(JSON.parse(data));
+    */
+    /* TODO: remove after frontend implementation*/
+    setQuizData(dummyQuizData);
+
+    // After setting the new quiz data, make sure to toggle the isQuizSubmitted.
+    setIsQuizSubmitted(false);
   };
 
   // Function to handle Quiz submission.
   const handleQuizSubmission = () => {
-    /* Todo */
-    console.log(`/${userId}/learning-section/page.tsx: Quiz Submitted!`);
+    /* TODO: implement the backend calls to store quiz results and other business logic implementation. */
+
+    // Toggle isQuizSubmitted to signal quiz submission was a success.
+    setIsQuizSubmitted(true);
+
   };
 
   // Function to handle user sending chat messages in the inquiry section.
@@ -144,6 +152,7 @@ const LearningSection = () => {
               quizData={quizData}
               setQuizData={setQuizData}
               submitQuiz={handleQuizSubmission}
+              isQuizSubmitted={isQuizSubmitted}
             />
           </div>
           <div className="h-1/2 border-t-2 overflow-auto scroll-m-1">
