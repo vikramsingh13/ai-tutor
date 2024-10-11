@@ -5,6 +5,8 @@ import "./globals.css";
 import SessionWrapper from "@/contexts/session-wrapper";
 // Import the Navbar to add to the top of the application.
 import Navbar from "@/components/navbar";
+// Import the shadcn Toaster component for site wide toast messages.
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,10 +36,9 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <div className="min-h-screen w-full bg-custom-bg-dark-2 text-white">
-            <Navbar>
-            {children}
-            </Navbar>
+            <Navbar>{children}</Navbar>
           </div>
+          <Toaster />
         </body>
       </html>
     </SessionWrapper>
