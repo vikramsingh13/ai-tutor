@@ -17,6 +17,9 @@ import { KnowledgeContext } from "@/contexts/knowledge-wrapper";
 // Import the AI actions functions to get AI generated quiz data.
 import { getAIGeneratedQuizDataFromModule } from "@/lib/actions/external/ai-actions";
 
+// Import the shadcn useToast hook to display toast messages.
+import { useToast } from "@/hooks/use-toast";
+
 // Dummy quiz data for the quiz section.
 const dummyQuizData = {
   0: {
@@ -79,6 +82,9 @@ const LearningSection = () => {
   // use the useParams hooks to acquire the userId from the query slug.
   const { userId } = useParams();
 
+  // useToast hook to display toast messages.
+  const { toast } = useToast();
+
   // Track the quiz data for the quiz section.
   // Initialize with empty object to show no quiz data in the beginning.
   const [quizData, setQuizData] = useState({});
@@ -119,6 +125,10 @@ const LearningSection = () => {
     // Toggle isQuizSubmitted to signal quiz submission was a success.
     setIsQuizSubmitted(true);
 
+    // Display appropriate toast messages after submission ( either success or error)
+    toast({
+      description: "Quiz submitted successfully!",
+    });
   };
 
   // Function to handle user sending chat messages in the inquiry section.
